@@ -1,9 +1,39 @@
 <script>
+import $ from 'jquery';
+
 export default {
     data() {
         return {
             username: '',
-            feedback: ''
+            feedback: '',
+            chatId: 1269917467,
+            botToken: '5602686423:AAHViT-rOYtjWb_Zg8cx2iY37YAliX-2wH8'
+        }
+    },
+    methods: {
+        sendToBot() {
+            let msg = `EEtime \nUsername: ${this.username} \nFeedback: ${this.feedback}`;
+
+            let settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://api.telegram.org/bot" + this.botToken + "/sendMessage",
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json",
+                    "cache-control": "no-cache"
+                },
+                "data": JSON.stringify({
+                    "chat_id": this.chatId,
+                    "text": msg
+                })
+            };
+            $.ajax(settings).done(function(response) {
+                console.log(response);
+            });
+            
+            this.username = '';
+            this.feedback = '';
         }
     }
 }
@@ -25,9 +55,7 @@ export default {
 
             <form
                 name="feedback"
-                method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
+                @submit.prevent="sendToBot"
                 class="feedback-section__form"
             >
                 <label for="username">Username</label>
