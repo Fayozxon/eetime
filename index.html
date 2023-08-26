@@ -7,6 +7,13 @@
     <title>EEtime | Screensavers</title>
   </head>
   <body>
+    <!-- netlify form -->
+    <form name="ask-question" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="radio" name="panelist" />
+      <textarea name="question"></textarea>
+    </form>
+    <!-- app -->
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

@@ -23,7 +23,13 @@ export default {
                 </p>
             </div>
 
-            <form action="../../index.html" method="POST" netlify class="feedback-section__form">
+            <form
+                name="feedback"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                class="feedback-section__form"
+            >
                 <label for="username">Username</label>
                 <input v-model="username" type="text" id="username" placeholder="e.g. instagram @user123">
                 <label for="feedback">Feedback</label>
