@@ -12,6 +12,8 @@ export default {
 </script>
 
 <template>
+
+  <MsgOnMobile></MsgOnMobile>
   
   <main class="main">
     
@@ -24,8 +26,6 @@ export default {
     <FeedbackForm></FeedbackForm>
 
     <Footer></Footer>
-
-    <MsgOnMobile></MsgOnMobile>
 
   </main>
 

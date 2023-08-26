@@ -8,14 +8,17 @@
     scroll-behavior: smooth;
 }
 
+body {
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: $fs-md;
+    font-weight: 500;
+    color: $clr-white;
+}
+
 .main {
     position: relative;
     min-height: 100vh;
     background: $clr-bg-black;
-    color: $clr-white;
-    font-family: 'Darker Grotesque', sans-serif;
-    font-size: $fs-md;
-    font-weight: 500;
     padding-bottom: 300px;
     overflow-x: hidden;
 }

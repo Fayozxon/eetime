@@ -4,21 +4,27 @@
 
 <template>
   
-  <section class="bg">
+  <section class="msg-bg">
       <div class="box">
         <img src="../assets/icon-compass.svg" alt="Compass Icon">
         <p class="text">
-            Currently, the website is not available on mobile devices.
+            Currently, the website is not available on small screens.
         </p>
       </div>
   </section>
 
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../main.scss';
 
-.bg {
+@media (max-width: 990px) {
+    .main {
+        display: none;
+    }
+}
+
+.msg-bg {
     position: fixed;
     top: 0;
     left: 0;
