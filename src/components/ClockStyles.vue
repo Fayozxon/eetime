@@ -13,7 +13,7 @@
                     <img src="../previews/clock-1.png" class="preview" alt="Preview Image">
                     <div class="card__overlay">
                         <div class="card__overlay--info">
-                            <h3>Color palette</h3>
+                            <h3>Color palette N{{ n }}</h3>
                             <p>
                                 <span>Minimal</span>
                                 <span>Customizable</span>
@@ -49,6 +49,11 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
 
+        @media (max-width: 1280px) {
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
         .card {
             position: relative;
             background: red;
@@ -72,18 +77,20 @@
                 transition: all 200ms ease-in-out;
 
                 &--info {
-                    max-width: 80%;
+                    max-width: 70%;
                     position: absolute;
                     bottom: 30px;
                     left: 30px;
 
                     h3 {
                         font-weight: 700;
+                        text-transform: capitalize;
                     }
 
                     p {
                         display: flex;
                         gap: 10px;
+                        row-gap: 0px;
                         flex-wrap: wrap;
                         text-transform: uppercase;
                         color: $clr-lt-blue;

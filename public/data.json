@@ -1,0 +1,9 @@
+{
+    "clocks": [
+        {
+            "id": 1,
+            "name": "color palette",
+            "category": ["minimal", "customizable"]
+        }
+    ]
+}
