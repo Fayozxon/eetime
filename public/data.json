@@ -1,9 +1,19 @@
 {
-    "clocks": [
+    "data": [
         {
             "id": 1,
             "name": "color palette",
             "category": ["minimal", "customizable"]
+        },
+        {
+            "id": 2,
+            "name": "Synthwave boy",
+            "category": ["lofi", "customizable"]
+        },
+        {
+            "id": 3,
+            "name": "lo-fi girl",
+            "category": ["lofi", "customizable"]
         }
     ]
 }

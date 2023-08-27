@@ -1,5 +1,23 @@
 <script>
+import clocksData from '../../public/data.json';
 
+export default {
+    props: ['filterType'],
+    data() {
+        return {
+            clocksList: clocksData.data
+        }
+    },
+    computed: {
+        clocks() {
+            if (this.filterType != 'all') {
+                return this.clocksList.filter(clock => clock.category.includes(this.filterType));
+            }
+            
+            return this.clocksList;
+        }
+    }
+}
 </script>
 
 <template>
@@ -9,22 +27,23 @@
 
             <div class="previews-section__box">
                 <!-- card -->
-                <div v-for="n in 9" class="card">
+                <div v-for="clock in clocks" class="card">
                     <img src="../previews/clock-1.png" class="preview" alt="Preview Image">
                     <div class="card__overlay">
                         <div class="card__overlay--info">
-                            <h3>Color palette N{{ n }}</h3>
+                            <h3>N{{ clock.id }} {{ clock.name }}</h3>
                             <p>
-                                <span>Minimal</span>
-                                <span>Customizable</span>
+                                <span v-for="category in clock.category">
+                                    {{ category }}
+                                </span>
                             </p>
                         </div>
                         <button class="card__overlay--love">
                             <img src="../assets/icon-heart.svg" alt="">
                         </button>
-                        <button class="card__overlay--action">
+                        <router-link :to="`/clock/${clock.id}`" class="card__overlay--action">
                             <img src="../assets/icon-arrow-up.svg" alt="">
-                        </button>
+                        </router-link>
                     </div>
                 </div>
                 <!-- /card -->
@@ -56,7 +75,7 @@
 
         .card {
             position: relative;
-            background: red;
+            background: $clr-bg-dk-blue;
             border-radius: 10px;
             overflow: hidden;
 

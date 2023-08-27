@@ -1,9 +1,9 @@
 <script>
 export default {
+    props: ['filters', 'filterType'],
     data() {
         return {
-            filters: ['all', 'minimal', 'animated', 'customizable', 'analog', 'digital', 'dark', 'light', 'meme'],
-            filterType: 'all'
+            
         }
     }
 }
@@ -17,6 +17,7 @@ export default {
         <ul class="filters__items">
             <li
                 v-for="filter in filters"
+                @click="$emit('changeFilter', filter)"
                 :class="{active: filterType == filter}"
                 class="item"
             >{{ filter }}</li>
