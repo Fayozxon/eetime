@@ -1,6 +1,6 @@
 <script>
 export default {
-    props: ['filters', 'filterType'],
+    props: ['filters', 'filterType', 'isLovedShown', 'lovedClocks'],
     data() {
         return {
             
@@ -14,7 +14,7 @@ export default {
   <section class="filters">
     <div class="container">
 
-        <ul class="filters__items">
+        <ul class="filters__items" :class="{disabled: isLovedShown}">
             <li
                 v-for="filter in filters"
                 @click="$emit('changeFilter', filter)"
@@ -22,7 +22,7 @@ export default {
                 class="item"
             >{{ filter }}</li>
         </ul>
-        <button class="item">
+        <button v-if="lovedClocks.length" class="item" :class="{active: isLovedShown}" @click="$emit('toggleLoved')">
             <img src="../assets/icon-heart.svg">
             Loved
         </button>
@@ -51,6 +51,12 @@ export default {
         display: flex;
         gap: 15px;
         flex-wrap: wrap;
+        transition: all 200ms ease-in-out;
+
+        &.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
     }
 
     .item {

@@ -2,7 +2,7 @@
 import clocksData from '../../public/data.json';
 
 export default {
-    props: ['filterType'],
+    props: ['filterType', 'lovedClocks', 'isLovedShown'],
     data() {
         return {
             clocksList: clocksData.data
@@ -10,6 +10,10 @@ export default {
     },
     computed: {
         clocks() {
+            if (this.isLovedShown) {
+                return this.clocksList.filter(clock => this.lovedClocks.includes(clock.id));
+            }
+
             if (this.filterType != 'all') {
                 return this.clocksList.filter(clock => clock.category.includes(this.filterType));
             }
@@ -28,7 +32,7 @@ export default {
             <div class="previews-section__box">
                 <!-- card -->
                 <div v-for="clock in clocks" class="card">
-                    <img src="../previews/clock-1.png" class="preview" alt="Preview Image">
+                    <img :src="`/previews/clock-${clock.id}.png`" class="preview" alt="Preview Image">
                     <div class="card__overlay">
                         <div class="card__overlay--info">
                             <h3>N{{ clock.id }} {{ clock.name }}</h3>
@@ -38,7 +42,11 @@ export default {
                                 </span>
                             </p>
                         </div>
-                        <button class="card__overlay--love">
+                        <button
+                          class="card__overlay--love"
+                          :class="{active: lovedClocks.includes(clock.id)}"
+                          @click="$emit('addRemoveLoved', clock.id)"
+                        >
                             <img src="../assets/icon-heart.svg" alt="">
                         </button>
                         <router-link :to="`/clock/${clock.id}`" class="card__overlay--action">
@@ -128,6 +136,7 @@ export default {
                     border: 2px solid $clr-st-dk-blue;
                     background: $clr-bg-dk-blue;
                     cursor: pointer;
+                    transition: all 200ms ease-in-out;
 
                     img {
                         width: 24px;

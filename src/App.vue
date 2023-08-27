@@ -11,7 +11,8 @@ export default {
   data() {
     return {
       lovedClocks: [],
-      filters: ['all', 'minimal', 'customizable', 'lofi'],
+      isLovedShown: false,
+      filters: ['all', 'minimal', 'lofi', 'customizable'],
       filterType: 'all'
     }
   },
@@ -21,6 +22,32 @@ export default {
     },
     changeFilter(newFilter) {
       this.filterType = newFilter;
+    },
+    toggleLoved() {
+      this.isLovedShown = !this.isLovedShown;
+    },
+    addRemoveLoved(clockId) {
+      if (this.lovedClocks.includes(clockId)) {
+        this.lovedClocks = this.lovedClocks.filter(id => id != clockId);
+      } else {
+        this.lovedClocks.push(clockId);
+      }
+
+      window.localStorage.setItem('lovedClocks', JSON.stringify(this.lovedClocks));
+    }
+  },
+  watch: {
+    lovedClocks() {
+      if (!this.lovedClocks.length) {
+        this.isLovedShown = false;
+      }
+    }
+  },
+  mounted() {
+    const temp = window.localStorage.getItem('lovedClocks');
+
+    if (temp.length) {
+      this.lovedClocks = JSON.parse(temp);
     }
   }
 }
@@ -38,9 +65,21 @@ export default {
       
       <Header></Header>
   
-      <Filters :filters="filters" :filterType="filterType" @changeFilter="changeFilter"></Filters>
+      <Filters
+        :lovedClocks="lovedClocks"
+        :filters="filters"
+        :filterType="filterType"
+        @changeFilter="changeFilter"
+        :isLovedShown="isLovedShown"
+        @toggleLoved="toggleLoved"
+      ></Filters>
   
-      <ClockStyles :filterType="filterType"></ClockStyles>
+      <ClockStyles
+        :filterType="filterType"
+        :lovedClocks="lovedClocks"
+        :isLovedShown="isLovedShown"
+        @addRemoveLoved="addRemoveLoved"
+      ></ClockStyles>
   
       <FeedbackForm></FeedbackForm>
   

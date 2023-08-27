@@ -5,11 +5,6 @@ import App from '../App.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {
-            path: '/',
-            name: 'home',
-            component: App
-        },
         ...clockData.data.map((clock) => ({
             path: `/clock/${clock.id}`,
             name: `Clock${clock.id}`,
