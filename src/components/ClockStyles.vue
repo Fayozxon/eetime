@@ -156,7 +156,7 @@ export default {
                     }
 
                     &.active {
-                        background: #CB0049;
+                        background: #FF002E;
                         border-color: $clr-white;
                     }
                 }

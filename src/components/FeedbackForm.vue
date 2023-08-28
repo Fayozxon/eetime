@@ -41,7 +41,7 @@ export default {
 
 <template>
     
-    <section class="feedback-section">
+    <section class="feedback-section" id="feedback">
         <div class="container">
 
             <div class="feedback-section__info">
@@ -136,6 +136,7 @@ export default {
             padding: 5px;
             font-weight: 700;
             cursor: pointer;
+            color: $clr-bg-black;
 
             &:disabled {
                 opacity: 0.7;

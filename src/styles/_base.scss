@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font: inherit;
+    color: inherit;
     scroll-behavior: smooth;
 }
 
@@ -32,7 +33,7 @@ body {
 .btn {
     background: $clr-bg-dk-blue;
     border: 2px solid $clr-st-dk-blue;
-    border-radius: 5px;
+    border-radius: 7px;
     padding: 10px 20px;
     color: $clr-white;
     text-transform: uppercase;

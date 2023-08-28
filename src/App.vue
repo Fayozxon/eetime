@@ -35,6 +35,24 @@ export default {
       }
 
       window.localStorage.setItem('lovedClocks', JSON.stringify(this.lovedClocks));
+    },
+    setWakeLock() {
+      if ('wakeLock' in navigator) {
+      let wakeLock = null;
+
+      const requestWakeLock = async () => {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('Screen wake lock is active!');
+          } catch (error) {
+            console.error('Failed to activate screen wake lock:', error);
+          }
+        };
+        // Request the screen wake lock
+        requestWakeLock();
+      } else {
+        console.log('The wakeLock API is not supported by this browser.');
+      }
     }
   },
   watch: {
@@ -45,6 +63,8 @@ export default {
     }
   },
   mounted() {
+    this.setWakeLock();
+
     const temp = window.localStorage.getItem('lovedClocks');
 
     if (temp.length) {

@@ -31,7 +31,7 @@ export default {
                 CLOCK <span>style</span> SCREENSAVERS
             </h1>
             <p class="text">
-                Find a clock style that matches your personality and use it as a screensaver and to take stunning photos of your pc setup.
+                Find a clock style that matches your personality and use it as a screensaver and to take stunning photos of your pc setup. <a href="#feedback">Feedback</a>
             </p>
         </div>
         <!-- features -->
