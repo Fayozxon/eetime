@@ -28,3 +28,19 @@ body {
     margin: 0 auto;
     padding: 0 40px;
 }
+
+.btn {
+    background: $clr-bg-dk-blue;
+    border: 2px solid $clr-st-dk-blue;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: $clr-white;
+    text-transform: uppercase;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+
+    &.active {
+        border-color: $clr-lt-blue;
+        color: $clr-lt-blue;
+    }
+}

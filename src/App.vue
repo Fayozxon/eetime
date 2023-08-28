@@ -12,8 +12,9 @@ export default {
     return {
       lovedClocks: [],
       isLovedShown: false,
-      filters: ['all', 'minimal', 'lofi', 'customizable'],
-      filterType: 'all'
+      filters: ['all', 'minimal', 'lofi', 'animated', 'customizable'],
+      filterType: 'all',
+      currentTime: ''
     }
   },
   methods: {
@@ -92,6 +93,15 @@ export default {
 
 <style lang="scss">
 @import './main.scss';
+
+.main .clock {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
 
 // typography
 .title {

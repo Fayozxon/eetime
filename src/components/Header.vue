@@ -1,4 +1,22 @@
 <script>
+export default {
+    data() {
+        return {
+            isFullScreen: false
+        }
+    },
+    methods: {
+        toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                this.isFullScreen = true;
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen();
+                this.isFullScreen = false;
+            }
+        }
+    }
+}
 </script>
 
 <template>
@@ -31,6 +49,8 @@
                 Customizable
             </li>
         </ul>
+        <!-- full screen btn -->
+        <button class="full-screen btn" :class="{active: isFullScreen}" @click="toggleFullScreen">Full Screen</button>
     </div>
   </header>
 
@@ -43,9 +63,16 @@
     padding-top: 80px;
 
     .container {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: start;
+    }
+
+    .full-screen.btn {
+        position: absolute;
+        right: 40px;
+        top: 230px;
     }
 
     &__animation {

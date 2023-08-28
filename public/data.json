@@ -14,6 +14,11 @@
             "id": 3,
             "name": "lo-fi girl",
             "category": ["lofi", "customizable"]
+        },
+        {
+            "id": 4,
+            "name": "classic dvd screen",
+            "category": ["animated", "customizable"]
         }
     ]
 }
