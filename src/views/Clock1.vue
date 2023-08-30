@@ -2,7 +2,18 @@
 export default {
     data() {
         return {
-            currentTime: '1'
+            currentTime: '1',
+            color1: '#EBE76C',
+            color2: '#F0B86E',
+            color3: '#ED7B7B',
+            color4: '#836096',
+            textTheme: 'light',
+            preMadeColors: [
+                ['#EBE76C', '#F0B86E', '#ED7B7B', '#836096'],
+                ['#C5DFF8', '#A0BFE0', '#7895CB', '#4A55A2'],
+                ['#FE7BE5', '#974EC3', '#504099', '#313866'],
+                ['#001253', '#3E6D9C', '#FD841F', '#E14D2A']
+            ]
         }
     },
     props: ['currentTIme'],
@@ -39,13 +50,43 @@ export default {
 <template>
     
     <section class="clock">
-        <div class="clock__bg">
-            <div class="part"></div>
-            <div class="part"></div>
-            <div class="part"></div>
-            <div class="part"></div>
+        <!-- settings -->
+        <div class="settings-panel">
+            <button class="btn" onclick="history.back()">Back</button>
+            <p class="label">Text theme</p>
+            <div class="two-columns">
+                <button class="btn" @click="textTheme = 'light'" :class="{active: textTheme == 'light'}">Light</button>
+                <button class="btn" @click="textTheme = 'dark'" :class="{active: textTheme == 'dark'}">Dark</button>
+            </div>
+            <p class="label">Choose palette colors</p>
+            <div class="four-columns">
+                <input type="color" v-model="color1">
+                <input type="color" v-model="color2">
+                <input type="color" v-model="color3">
+                <input type="color" v-model="color4">
+            </div>
+            <p class="label">Pre-made</p>
+            <div class="two-columns">
+                <div
+                    v-for="colors in preMadeColors"
+                    @click="color1 = colors[0], color2 = colors[1], color3 = colors[2], color4 = colors[3]"
+                    :style="`background: linear-gradient(to right, ${colors[0]}, ${colors[1]}, ${colors[2]}, ${colors[3]})`"
+                    class="pre-made"
+                ></div>
+            </div>
+            <!-- credits -->
+            <p class="credits">
+                ✨ Inspiration from android apps.
+            </p>
         </div>
-        <div class="clock__time">
+        <!-- clock -->
+        <div class="clock__bg">
+            <div class="part" :style="`background: ${color1}`"></div>
+            <div class="part" :style="`background: ${color2}`"></div>
+            <div class="part" :style="`background: ${color3}`"></div>
+            <div class="part" :style="`background: ${color4}`"></div>
+        </div>
+        <div class="clock__time" :class="{dark: textTheme == 'dark'}">
             <h2 class="number">{{ currentTime.hr1 }}</h2>
             <h2 class="number">{{ currentTime.hr2 }}</h2>
             <h2 class="number">{{ currentTime.min1 }}</h2>
@@ -62,6 +103,12 @@ export default {
 .clock {
     font-family: "Montserrat";
     color: #fff;
+
+    .pre-made {
+        height: 40px;
+        border-radius: 7px;
+        cursor: pointer;
+    }
 
     &__bg {
         height: 100%;
@@ -93,6 +140,10 @@ export default {
         right: 0;
         bottom: 0;
         z-index: 10;
+
+        &.dark {
+            color: #1f1f1f;
+        }
 
         .number {
             text-align: center;
