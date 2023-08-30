@@ -16,7 +16,6 @@ export default {
             ]
         }
     },
-    props: ['currentTIme'],
     methods: { 
         setTime() {
             const time = setInterval(() => {
