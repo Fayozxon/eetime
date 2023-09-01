@@ -52,6 +52,7 @@ export default {
         <!-- settings -->
         <div class="settings-panel">
             <button class="btn" onclick="history.back()">Back</button>
+            <h3 class="title">Color palette</h3>
             <p class="label">Text theme</p>
             <div class="two-columns">
                 <button class="btn" @click="textTheme = 'light'" :class="{active: textTheme == 'light'}">Light</button>
@@ -95,7 +96,7 @@ export default {
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../main.scss';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 

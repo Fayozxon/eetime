@@ -36,6 +36,7 @@ export default {
         <!-- settings -->
         <div class="settings-panel">
             <button class="btn" onclick="history.back()">Back</button>
+            <h3 class="title">Classic DVD Screen</h3>
             <!-- credits -->
             <p class="credits">
                 ✨ Inspiration from a DVD screen.
@@ -49,7 +50,7 @@ export default {
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../main.scss';
 @import url('https://fonts.googleapis.com/css2?family=K2D:wght@600&display=swap');
 
